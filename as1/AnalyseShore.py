@@ -4,6 +4,7 @@ from dircache import listdir
 import numpy as np
 import math
 import re
+import csv
 import sys
 from plot import plot_histogram, plot_box, plot_scatter, plot_xy_histogram
 
@@ -32,7 +33,8 @@ feature_mapping = {0: "Age", 2: "Angry", 3: "Happy",
                    4: "MouthOpen", 5: "Surprised"}
 # feature_mapping = {134	:"right blow raise",135	:"left brow raise",136	:"brow squint"}
 
-
+results = []
+labels = []
 for i in feature_mapping.keys():
     # video feature file to be read
     video = ""
@@ -40,7 +42,8 @@ for i in feature_mapping.keys():
     # Features in individual class
     class_negative_feature = []
     class_positive_feature = []
-
+    class_neutral_feature = []
+    result = []
     for d_row in data:
         current_video = FEATURE + get_file_name(id_to_file_name, d_row[0])
         if (video != current_video):
@@ -69,13 +72,13 @@ for i in feature_mapping.keys():
                 feat_val = float(tokens_dict[feature_mapping[i]])
             else:
                 continue
+            if (int(features[0]) >= end_frame):
+                break
             if math.isnan(feat_val):
                 continue
             else:
                 pool_feature.append(feat_val)
 
-            if (int(features[0]) >= end_frame):
-                break
         if(sum(map(abs, pool_feature))!=0):
             pool_feature =[np.nanstd(pool_feature)]
         else:
@@ -86,7 +89,10 @@ for i in feature_mapping.keys():
             class_negative_feature += pool_feature
         elif label == 1:
             class_positive_feature += pool_feature
-
+        else:
+            class_neutral_feature += pool_feature
+        result+=pool_feature
+    results.append(result)
     axis = [0,
             100000,
             min(min(class_negative_feature), min(class_positive_feature)) - 1,
@@ -99,8 +105,15 @@ for i in feature_mapping.keys():
     # plot_histogram(class1_feature, "class1-"+feat_id_to_name[i])
     #print class_positive_feature
     #print class_negative_feature
-    data_to_plot = [class_positive_feature, class_negative_feature]
-    plot_box(data_to_plot, "SHORE", feature_mapping[i], ["class 1", "class -1"])
+    data_to_plot = [class_positive_feature, class_negative_feature,class_neutral_feature]
+    plot_box(data_to_plot, "SHORE", feature_mapping[i], ["class 1", "class -1", "class 0"])
     # plot_xy_histogram(class_positive_feature, class_negative_feature, feature_mapping[i], ["class1-", "class-1-"])
+    labels.append("SHORE-"+str(feature_mapping[i]))
+results = list(map(list, zip(*results)))
 
+results = [[]]+results
+results[0] = labels
+with open("output-SHORE.csv", "wb") as f:
+    writer = csv.writer(f)
+    writer.writerows(results)
 

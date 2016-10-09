@@ -24,7 +24,7 @@ def plot_xy_histogram(a, b, var_name, label):
     
 
 
-def plot_box(data_to_plot, var_name, label):
+def plot_box(data_to_plot, folder, var_name, label):
     # Create a figure instance
     fig = plt.figure(1, figsize=(9, 6))
     # Create an axes instance
@@ -34,7 +34,7 @@ def plot_box(data_to_plot, var_name, label):
     ## Custom x-axis labels
     ax.set_xticklabels(label)
     # Save the figure
-    fig.savefig(var_name+"-box", bbox_inches='tight')
+    fig.savefig(folder+"/"+var_name+"-box", bbox_inches='tight')
     plt.close()
     
 def plot_scatter(x, var_name,axis=None):
