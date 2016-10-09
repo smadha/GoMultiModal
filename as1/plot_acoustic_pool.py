@@ -49,7 +49,7 @@ for i in feat_id_to_name.keys():
             vid_last = open(vid_new ,"r")
             print "Read - ",vid_new
         
-        pool_feature=0    
+        pool_feature=[]    
         for obs_range in range(start_ms,end_ms,10):
             features = vid_last.readline().strip().split(",")
             feat_val = float(features[i])
@@ -58,13 +58,10 @@ for i in feat_id_to_name.keys():
                 print feat_val,label
                 continue
             
-#             pool_feature+=feat_val # sum
-#             if feat_val > pool_feature : # max
-#                 pool_feature = feat_val
-#             
-            if feat_val < pool_feature : # min
-                pool_feature = feat_val
-             
+            pool_feature.append(feat_val)
+        
+        #apply pooling operator here
+        pool_feature = np.std(pool_feature)
         if label == -1:
             class_1_feature.append(pool_feature )
         elif label == 1:
@@ -78,12 +75,13 @@ for i in feat_id_to_name.keys():
 #     plot_scatter(class_1_feature, "class-1-"+feat_id_to_name[i],axis)
 #     plot_scatter(class1_feature, "class1-"+feat_id_to_name[i],axis)
 #     
-    plot_histogram(class_1_feature, "class-1-"+feat_id_to_name[i])
-    plot_histogram(class1_feature, "class1-"+feat_id_to_name[i])
+#     plot_histogram(class_1_feature, "class-1-"+feat_id_to_name[i])
+#     plot_histogram(class1_feature, "class1-"+feat_id_to_name[i])
      
     data_to_plot = [class1_feature,class_1_feature]
-    plot_box(data_to_plot, feat_id_to_name[i],["class 1","class -1"])
-    plot_xy_histogram(class1_feature,class_1_feature, feat_id_to_name[i],["class1-","class-1-"])
+    plot_box(data_to_plot, "std-"+feat_id_to_name[i],["class 1","class -1"])
+
+#     plot_xy_histogram(class1_feature,class_1_feature, feat_id_to_name[i],["class1-","class-1-"])
     
     
     
