@@ -14,12 +14,12 @@ ACOUSTIC_FEATURE = "../data/as1/features/AcousticFeatures/"
 # 1 -> video1(00h00m27s-00h01m01s).wav 
 id_to_file_name = {}
 
-FEATURE = ACOUSTIC_FEATURE
+FEATURE_DIR = ACOUSTIC_FEATURE
 
 data = np.genfromtxt(ANNOTATED_SENTI,
                   delimiter=",", skip_header=1, usecols=[0,1,2,9])
 
-for fn in listdir(FEATURE):
+for fn in listdir(FEATURE_DIR):
     id = fn[5:7]
     if id[1]=="(":
         id=id[0]
@@ -32,7 +32,7 @@ feat_id_to_name = {4:"energy-dB",5:"energy-slope",3:"frequency",2:"NAQ",1:"PeakS
               
 for i in feat_id_to_name.keys():
     #video feature file to be read 
-    vid_last = open(FEATURE + get_file_name(id_to_file_name, data[0][0]),"r")
+    vid_last = open(FEATURE_DIR + get_file_name(id_to_file_name, data[0][0]),"r")
     print "Read - ", vid_last.name
     
     # Features in individual class
@@ -40,7 +40,7 @@ for i in feat_id_to_name.keys():
     class1_feature = []
     
     for d_row in data:
-        vid_new = FEATURE + get_file_name(id_to_file_name,d_row[0])
+        vid_new = FEATURE_DIR + get_file_name(id_to_file_name,d_row[0])
         start_ms = int(d_row[1]*100)*10
         end_ms = int(d_row[2]*100)*10
         label = int(d_row[3])
