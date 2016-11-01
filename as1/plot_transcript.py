@@ -56,68 +56,87 @@ last_uttsindex = 1
 
 class_1_feature = []
 class1_feature = []
+class0_feature = []
 
+anova = []
+labels = []
 for d_row in data:
-        vid_new = FEATURE_DIR + get_file_name(id_to_file_name,d_row[0])
-        start_ms = int(d_row[1]*1000)
-        end_ms = int(d_row[2]*1000)
-        label = int(d_row[3])
-        
-        if vid_new in video_to_transcript:
-            events,utts = video_to_transcript[vid_new]
-        else:
-            print vid_new
-            last_uttsindex = 1
-            events,utts = readTrans(vid_new)
-            video_to_transcript[vid_new] = events,utts
+    vid_new = FEATURE_DIR + get_file_name(id_to_file_name,d_row[0])
+    start_ms = int(d_row[1]*1000)
+    end_ms = int(d_row[2]*1000)
+    label = int(d_row[3])
+    
+    if vid_new in video_to_transcript:
+        events,utts = video_to_transcript[vid_new]
+    else:
+        print vid_new
+        last_uttsindex = 1
+        events,utts = readTrans(vid_new)
+        video_to_transcript[vid_new] = events,utts
             
-        if label == 0:
-            continue
-        
 #         print label, last_uttsindex, end_ms
-        feat_val = []
-        while last_uttsindex in events:
-            if events[last_uttsindex][1]*1000 > end_ms:
-                break
-            
-            #word cloud 1
-#             feat_val += get_main_words(utts[last_uttsindex])
-            
-            # count of words with CAPS on
-#             feat_val.append(sum([ 1 for word in get_words(utts[last_uttsindex]) if word.isupper()]))
-            
-            # count of pause '/' in a utterance
-#             feat_val.append( sum([ 1 for char in utts[last_uttsindex] if char == '/']) )
-            
-            # total elongation in a utterance
-#             feat_val.append( sum([ 1 for char in utts[last_uttsindex] if char == ':']) )
-            
-            # Obscenity count
-            feat_val.append( profanity_count(get_words(utts[last_uttsindex])) )
-#             print feat_val  
-            last_uttsindex+=1
-            
-        if feat_val == []:
-            continue
-        # pooling here if any
-        feat_val = [sum(feat_val)]
+    feat_val = []
+    while last_uttsindex in events:
+        if events[last_uttsindex][1]*1000 > end_ms:
+            break
         
-        if label == -1:
-            class_1_feature += feat_val 
-        elif label == 1:
-            class1_feature += feat_val
-            
-            
+        #word cloud 1
+#             feat_val += get_main_words(utts[last_uttsindex])
+        
+        # count of words with CAPS on
+#             feat_val.append(sum([ 1 for word in get_words(utts[last_uttsindex]) if word.isupper()]))
+        
+        # count of pause '/' in a utterance 
+        # we have only single "/" and max pause by each pause in 150ms
+#         feat_val.append( sum([ 150 for char in utts[last_uttsindex] if char == '/']) )
+        
+        # total elongation in a utterance
+#         feat_val.append( sum([ 1 for char in utts[last_uttsindex] if char == ':']) )
+        
+        # Obscenity count
+#             feat_val.append( profanity_count(get_words(utts[last_uttsindex])) )
+
+        # words per utterance
+        words_per_sec =  1.0 * len(get_words(utts[last_uttsindex])) / (events[last_uttsindex][1]*1.000 - events[last_uttsindex][0]*1.000) 
+        if words_per_sec > 0.001:
+            feat_val.append(words_per_sec)
+#         feat_val.append( len( get_words(utts[last_uttsindex]) ) )
+          
+        last_uttsindex+=1
+    
+    print feat_val, label
+    if feat_val == []:
+        feat_val = [0]
+    # pooling here if any
+    feat_val = [np.mean(feat_val)]
+#     feat_val = [ (1.0*np.sum(feat_val)) / (1.0*(end_ms-start_ms)/1000) ]
+    
+#     if label == 0:
+#         continue
+
+    if label == -1:
+        class_1_feature += feat_val 
+    elif label == 1:
+        class1_feature += feat_val
+    elif label == 0:
+        class0_feature += feat_val
+    anova += feat_val 
+    labels.append(label)
 #word cloud 2        
 # word_cloud(' '.join(class_1_feature), "class_-1")
 # word_cloud(' '.join(class1_feature), "class_1")
 
-print len(class1_feature), len(class_1_feature)
+print len(class1_feature), len(class_1_feature) #, "\n", class1_feature, "\n", class_1_feature 
+print "Avg",sum(class1_feature)*1.0/len(class1_feature), sum(class_1_feature)*1.0/len(class_1_feature) 
+print "Max",max(class1_feature), max(class_1_feature)
+print "index",class1_feature.index(max(class1_feature)), class_1_feature.index(max(class_1_feature)) 
+print "Std",np.std(class1_feature), np.std(class_1_feature) 
 
-data_to_plot = [class1_feature,class_1_feature]
-plot_box(data_to_plot, "sum-obscenity",["class 1","class -1"])
- 
-plot_xy_histogram(class1_feature,class_1_feature, "sum-obscenity",["class1-","class-1-"])
+data_to_plot = [class1_feature,class_1_feature,class0_feature]
+plot_box(data_to_plot, "std-elongation",["class 1","class -1","class 0"])
+#   
+# plot_xy_histogram(class1_feature,class_1_feature, "std-elongation",["class1-","class-1-"])
 
-
+print anova
+print labels
 
