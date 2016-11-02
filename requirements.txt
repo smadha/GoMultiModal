@@ -1,1 +1,3 @@
 wordcloud
+scikit-learn==0.18
+numpy

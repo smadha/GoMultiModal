@@ -1,4 +1,6 @@
 import numpy as np
+from sklearn.model_selection import train_test_split
+
 
 def normalize(X_tr, X_te):
     ''' Normalize training and test data features
@@ -16,12 +18,12 @@ def normalize(X_tr, X_te):
     X_te = (X_te - X_mu)/X_sig
     return X_tr, X_te
 
-def loaddata(filename, col_selected=None, test_data=0.2):
+def loaddata(filename, col_selected=None, test_size=0.2):
     ''' Load and preprocess dataset
     Args:
         filename: path to data file multimodal.csv
         col_selected: features selected
-        test_data: percentage of total data to be kept for testing
+        test_size: percentage of total data to be kept for testing
     Output:
         X_tr: normalised training features
         y_tr: training labels
@@ -52,16 +54,10 @@ def loaddata(filename, col_selected=None, test_data=0.2):
     y = X[:,len(X[0])-1]
     X = np.delete(X, [len(X[0])-1], axis=1)
     
-    n_tr = int( (1 - test_data) * len(y) )
-    
-    
-    X_tr = X[0:n_tr]
-    y_tr = y[0:n_tr]
-
-    X_te = X[n_tr:]
-    y_te = y[n_tr:]
+    X_tr,X_te,y_tr,y_te = train_test_split(X, y, test_size=test_size, random_state=42)
     
     X_tr,X_te = normalize(X_tr, X_te)
+    
     return X_tr,y_tr,X_te,y_te
 
 
