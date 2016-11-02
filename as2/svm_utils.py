@@ -8,12 +8,12 @@ from data_utils import loaddata
 
 C_range = [ 4**i for i in range(-3,8) ]
 gamma_ramge = [ 4**i for i in range(-7,0) ]
-deg_range =  [ 4**i for i in range(1,4)]
+deg_range =  range(1,4)
 
 # Number of folds in Cross validation
-CV_FOLDS = 2
+CV_FOLDS = 5
 # Number of parallel jobs
-parallel = 1
+parallel = 2
 
 
 def report_svm(X_tr,y_tr,X_te,y_te, print_CV_report = False):
@@ -22,7 +22,7 @@ def report_svm(X_tr,y_tr,X_te,y_te, print_CV_report = False):
     parameters = [{ 'kernel':['poly'], 'C':C_range, 'degree':deg_range },
                   { 'kernel':['rbf'], 'C':C_range, 'gamma':gamma_ramge}]
     
-    clf = GridSearchCV(svr, parameters, cv=CV_FOLDS, n_jobs = parallel, verbose=False)
+    clf = GridSearchCV(svr, parameters, cv=CV_FOLDS, n_jobs = parallel, verbose=True)
     
     clf.fit(X_tr,y_tr)
     
@@ -49,5 +49,5 @@ def report_svm(X_tr,y_tr,X_te,y_te, print_CV_report = False):
         
 
 if __name__ == '__main__':
-    X_tr,y_tr,X_te,y_te = loaddata("test.csv")
-    report_svm(X_tr,y_tr,X_te,y_te)
+    X_tr,y_tr,X_te,y_te = loaddata("output-feature-engineering.csv")
+    report_svm(X_tr,y_tr,X_te,y_te, True)

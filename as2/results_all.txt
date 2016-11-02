@@ -1,0 +1,130 @@
+Fitting 5 folds for each of 110 candidates, totalling 550 fits
+
+Best parameters set found on development set:
+
+{'kernel': 'poly', 'C': 16, 'degree': 3}
+
+Grid scores on development set:
+
+mean 	std 		params
+0.388 (+/-0.005) for {'kernel': 'poly', 'C': 0.015625, 'degree': 1}
+0.388 (+/-0.005) for {'kernel': 'poly', 'C': 0.015625, 'degree': 2}
+0.379 (+/-0.032) for {'kernel': 'poly', 'C': 0.015625, 'degree': 3}
+0.393 (+/-0.017) for {'kernel': 'poly', 'C': 0.0625, 'degree': 1}
+0.379 (+/-0.032) for {'kernel': 'poly', 'C': 0.0625, 'degree': 2}
+0.379 (+/-0.032) for {'kernel': 'poly', 'C': 0.0625, 'degree': 3}
+0.469 (+/-0.105) for {'kernel': 'poly', 'C': 0.25, 'degree': 1}
+0.371 (+/-0.047) for {'kernel': 'poly', 'C': 0.25, 'degree': 2}
+0.402 (+/-0.059) for {'kernel': 'poly', 'C': 0.25, 'degree': 3}
+0.464 (+/-0.104) for {'kernel': 'poly', 'C': 1, 'degree': 1}
+0.402 (+/-0.042) for {'kernel': 'poly', 'C': 1, 'degree': 2}
+0.487 (+/-0.046) for {'kernel': 'poly', 'C': 1, 'degree': 3}
+0.473 (+/-0.162) for {'kernel': 'poly', 'C': 4, 'degree': 1}
+0.411 (+/-0.077) for {'kernel': 'poly', 'C': 4, 'degree': 2}
+0.491 (+/-0.054) for {'kernel': 'poly', 'C': 4, 'degree': 3}
+0.478 (+/-0.184) for {'kernel': 'poly', 'C': 16, 'degree': 1}
+0.415 (+/-0.151) for {'kernel': 'poly', 'C': 16, 'degree': 2}
+0.518 (+/-0.096) for {'kernel': 'poly', 'C': 16, 'degree': 3}
+0.491 (+/-0.171) for {'kernel': 'poly', 'C': 64, 'degree': 1}
+0.451 (+/-0.159) for {'kernel': 'poly', 'C': 64, 'degree': 2}
+0.504 (+/-0.087) for {'kernel': 'poly', 'C': 64, 'degree': 3}
+0.473 (+/-0.166) for {'kernel': 'poly', 'C': 256, 'degree': 1}
+0.455 (+/-0.211) for {'kernel': 'poly', 'C': 256, 'degree': 2}
+0.482 (+/-0.126) for {'kernel': 'poly', 'C': 256, 'degree': 3}
+0.473 (+/-0.132) for {'kernel': 'poly', 'C': 1024, 'degree': 1}
+0.438 (+/-0.226) for {'kernel': 'poly', 'C': 1024, 'degree': 2}
+0.460 (+/-0.117) for {'kernel': 'poly', 'C': 1024, 'degree': 3}
+0.473 (+/-0.132) for {'kernel': 'poly', 'C': 4096, 'degree': 1}
+0.420 (+/-0.130) for {'kernel': 'poly', 'C': 4096, 'degree': 2}
+0.446 (+/-0.090) for {'kernel': 'poly', 'C': 4096, 'degree': 3}
+0.469 (+/-0.133) for {'kernel': 'poly', 'C': 16384, 'degree': 1}
+0.451 (+/-0.155) for {'kernel': 'poly', 'C': 16384, 'degree': 2}
+0.438 (+/-0.080) for {'kernel': 'poly', 'C': 16384, 'degree': 3}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.015625, 'gamma': 6.103515625e-05}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.015625, 'gamma': 0.000244140625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.015625, 'gamma': 0.0009765625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.015625, 'gamma': 0.00390625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.015625, 'gamma': 0.015625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.015625, 'gamma': 0.0625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.015625, 'gamma': 0.25}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.0625, 'gamma': 6.103515625e-05}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.0625, 'gamma': 0.000244140625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.0625, 'gamma': 0.0009765625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.0625, 'gamma': 0.00390625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.0625, 'gamma': 0.015625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.0625, 'gamma': 0.0625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.0625, 'gamma': 0.25}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.25, 'gamma': 6.103515625e-05}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.25, 'gamma': 0.000244140625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.25, 'gamma': 0.0009765625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 0.25, 'gamma': 0.00390625}
+0.397 (+/-0.019) for {'kernel': 'rbf', 'C': 0.25, 'gamma': 0.015625}
+0.451 (+/-0.064) for {'kernel': 'rbf', 'C': 0.25, 'gamma': 0.0625}
+0.429 (+/-0.041) for {'kernel': 'rbf', 'C': 0.25, 'gamma': 0.25}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 1, 'gamma': 6.103515625e-05}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 1, 'gamma': 0.000244140625}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 1, 'gamma': 0.0009765625}
+0.420 (+/-0.070) for {'kernel': 'rbf', 'C': 1, 'gamma': 0.00390625}
+0.464 (+/-0.145) for {'kernel': 'rbf', 'C': 1, 'gamma': 0.015625}
+0.491 (+/-0.086) for {'kernel': 'rbf', 'C': 1, 'gamma': 0.0625}
+0.504 (+/-0.065) for {'kernel': 'rbf', 'C': 1, 'gamma': 0.25}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 4, 'gamma': 6.103515625e-05}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 4, 'gamma': 0.000244140625}
+0.424 (+/-0.085) for {'kernel': 'rbf', 'C': 4, 'gamma': 0.0009765625}
+0.451 (+/-0.128) for {'kernel': 'rbf', 'C': 4, 'gamma': 0.00390625}
+0.491 (+/-0.133) for {'kernel': 'rbf', 'C': 4, 'gamma': 0.015625}
+0.478 (+/-0.028) for {'kernel': 'rbf', 'C': 4, 'gamma': 0.0625}
+0.487 (+/-0.104) for {'kernel': 'rbf', 'C': 4, 'gamma': 0.25}
+0.388 (+/-0.005) for {'kernel': 'rbf', 'C': 16, 'gamma': 6.103515625e-05}
+0.420 (+/-0.070) for {'kernel': 'rbf', 'C': 16, 'gamma': 0.000244140625}
+0.451 (+/-0.105) for {'kernel': 'rbf', 'C': 16, 'gamma': 0.0009765625}
+0.487 (+/-0.155) for {'kernel': 'rbf', 'C': 16, 'gamma': 0.00390625}
+0.504 (+/-0.086) for {'kernel': 'rbf', 'C': 16, 'gamma': 0.015625}
+0.491 (+/-0.158) for {'kernel': 'rbf', 'C': 16, 'gamma': 0.0625}
+0.482 (+/-0.148) for {'kernel': 'rbf', 'C': 16, 'gamma': 0.25}
+0.420 (+/-0.070) for {'kernel': 'rbf', 'C': 64, 'gamma': 6.103515625e-05}
+0.451 (+/-0.105) for {'kernel': 'rbf', 'C': 64, 'gamma': 0.000244140625}
+0.473 (+/-0.152) for {'kernel': 'rbf', 'C': 64, 'gamma': 0.0009765625}
+0.487 (+/-0.127) for {'kernel': 'rbf', 'C': 64, 'gamma': 0.00390625}
+0.509 (+/-0.036) for {'kernel': 'rbf', 'C': 64, 'gamma': 0.015625}
+0.496 (+/-0.176) for {'kernel': 'rbf', 'C': 64, 'gamma': 0.0625}
+0.482 (+/-0.104) for {'kernel': 'rbf', 'C': 64, 'gamma': 0.25}
+0.455 (+/-0.103) for {'kernel': 'rbf', 'C': 256, 'gamma': 6.103515625e-05}
+0.469 (+/-0.151) for {'kernel': 'rbf', 'C': 256, 'gamma': 0.000244140625}
+0.473 (+/-0.187) for {'kernel': 'rbf', 'C': 256, 'gamma': 0.0009765625}
+0.478 (+/-0.101) for {'kernel': 'rbf', 'C': 256, 'gamma': 0.00390625}
+0.487 (+/-0.100) for {'kernel': 'rbf', 'C': 256, 'gamma': 0.015625}
+0.460 (+/-0.104) for {'kernel': 'rbf', 'C': 256, 'gamma': 0.0625}
+0.464 (+/-0.092) for {'kernel': 'rbf', 'C': 256, 'gamma': 0.25}
+0.469 (+/-0.151) for {'kernel': 'rbf', 'C': 1024, 'gamma': 6.103515625e-05}
+0.473 (+/-0.167) for {'kernel': 'rbf', 'C': 1024, 'gamma': 0.000244140625}
+0.504 (+/-0.164) for {'kernel': 'rbf', 'C': 1024, 'gamma': 0.0009765625}
+0.504 (+/-0.071) for {'kernel': 'rbf', 'C': 1024, 'gamma': 0.00390625}
+0.482 (+/-0.124) for {'kernel': 'rbf', 'C': 1024, 'gamma': 0.015625}
+0.455 (+/-0.139) for {'kernel': 'rbf', 'C': 1024, 'gamma': 0.0625}
+0.460 (+/-0.140) for {'kernel': 'rbf', 'C': 1024, 'gamma': 0.25}
+0.469 (+/-0.167) for {'kernel': 'rbf', 'C': 4096, 'gamma': 6.103515625e-05}
+0.478 (+/-0.188) for {'kernel': 'rbf', 'C': 4096, 'gamma': 0.000244140625}
+0.487 (+/-0.072) for {'kernel': 'rbf', 'C': 4096, 'gamma': 0.0009765625}
+0.487 (+/-0.108) for {'kernel': 'rbf', 'C': 4096, 'gamma': 0.00390625}
+0.438 (+/-0.157) for {'kernel': 'rbf', 'C': 4096, 'gamma': 0.015625}
+0.438 (+/-0.131) for {'kernel': 'rbf', 'C': 4096, 'gamma': 0.0625}
+0.460 (+/-0.140) for {'kernel': 'rbf', 'C': 4096, 'gamma': 0.25}
+0.478 (+/-0.180) for {'kernel': 'rbf', 'C': 16384, 'gamma': 6.103515625e-05}
+0.496 (+/-0.175) for {'kernel': 'rbf', 'C': 16384, 'gamma': 0.000244140625}
+0.500 (+/-0.048) for {'kernel': 'rbf', 'C': 16384, 'gamma': 0.0009765625}
+0.469 (+/-0.133) for {'kernel': 'rbf', 'C': 16384, 'gamma': 0.00390625}
+0.455 (+/-0.172) for {'kernel': 'rbf', 'C': 16384, 'gamma': 0.015625}
+0.446 (+/-0.119) for {'kernel': 'rbf', 'C': 16384, 'gamma': 0.0625}
+0.460 (+/-0.140) for {'kernel': 'rbf', 'C': 16384, 'gamma': 0.25}
+
+Detailed classification report on test data:
+             precision    recall  f1-score   support
+
+       -1.0       0.38      0.65      0.48        17
+        0.0       0.35      0.38      0.36        16
+        1.0       0.60      0.26      0.36        23
+
+avg / total       0.46      0.41      0.40        56
+
+
