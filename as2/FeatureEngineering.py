@@ -38,7 +38,16 @@ feature_mapping = {2: "Angry"}
 # feature_mapping = {134	:"right blow raise",135	:"left brow raise",136	:"brow squint"}
 
 results = []
+result = []
+counter = 0
 labels = []
+
+for d_row in data:
+    counter = counter+1;
+    result.append(str(d_row[0])+"_"+str(counter))
+
+results.append(result)
+labels.append("Id")
 
 for i in feature_mapping.keys():
     # video feature file to be read
@@ -357,10 +366,16 @@ for d_row in data:
     result_elong += feat_val_elong
     result_obs += feat_val_obs
 
+result = []
+for d_row in data:
+    result.append(d_row[3])
+
 results.append(result_elong)
 results.append(result_obs)
+results.append(result)
 labels.append("TRS-Elongation")
 labels.append("TRS-Obscene count")
+labels.append("Label")
 results = list(map(list, zip(*results)))
 results = [[]]+results
 results[0] = labels
