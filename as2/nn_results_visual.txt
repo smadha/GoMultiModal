@@ -1,0 +1,31 @@
+Using Theano backend.
+224 8
+224 3
+Train on 201 samples, validate on 23 samples
+Epoch 1/50
+201/201 [==============================] - 0s - loss: 0.2354 - acc: 0.2935 - val_loss: 0.2496 - val_acc: 0.2609
+Epoch 2/50
+201/201 [==============================] - 0s - loss: 0.2338 - acc: 0.2935 - val_loss: 0.2485 - val_acc: 0.2609
+Epoch 3/50
+201/201 [==============================] - 0s - loss: 0.2316 - acc: 0.3035 - val_loss: 0.2472 - val_acc: 0.2609
+Epoch 4/50
+201/201 [==============================] - 0s - loss: 0.2290 - acc: 0.3433 - val_loss: 0.2461 - val_acc: 0.2609
+Epoch 5/50
+201/201 [==============================] - 0s - loss: 0.2262 - acc: 0.3582 - val_loss: 0.2451 - val_acc: 0.2174
+Epoch 6/50
+201/201 [==============================] - 0s - loss: 0.2233 - acc: 0.3682 - val_loss: 0.2445 - val_acc: 0.2609
+Epoch 7/50
+201/201 [==============================] - 0s - loss: 0.2205 - acc: 0.4030 - val_loss: 0.2445 - val_acc: 0.2174
+Epoch 8/50
+Epoch 00007: early stopping
+201/201 [==============================] - 0s - loss: 0.2180 - acc: 0.4328 - val_loss: 0.2449 - val_acc: 0.2174
+Saved model to disk
+32/56 [================>.............] - ETA: 0sDetailed classification report on test data:
+             precision    recall  f1-score   support
+
+        0.0       0.55      0.42      0.48        26
+        1.0       0.54      0.37      0.44        19
+        2.0       0.39      0.82      0.53        11
+
+avg / total       0.51      0.48      0.47        56
+

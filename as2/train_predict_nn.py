@@ -62,7 +62,7 @@ def transform_label(labels):
     return labels_new
 
 #Run with all features
-X_tr,y_tr,X_te,y_te = loaddata("output-feature-engineering.csv")
+X_tr,y_tr,X_te,y_te = loaddata("output-feature-engineering-acoustic.csv")
 
 y_tr = transform_label(y_tr)
 
