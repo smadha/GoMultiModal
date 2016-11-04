@@ -28,7 +28,7 @@ def getSplitIndex(X,index):
         splitIndex = index+forwardCounter
     else:
         splitIndex = index-backwardCounter
-    return X[0:splitIndex],X[splitIndex+1:]
+    return X[0:splitIndex+1],X[splitIndex+1:]
 
 def loaddata(filename, col_selected=None, test_size=0.25, split=4):
     ''' Load and preprocess dataset
