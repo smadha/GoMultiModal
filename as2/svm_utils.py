@@ -1,10 +1,7 @@
-
-
 from sklearn.svm import SVC
-from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
 
-from data_utils import loaddata
+from data_utils import loaddata, get_custom_validation_sets
 
 C_range = [ 10 ** i for i in range(-3, 3) ]
 
@@ -16,21 +13,7 @@ parallel = 1
 
 def report_svm(X_tr, y_tr, X_te, y_te, print_CV_report=False):
     print "Running linear SVM"
-    # cv_custom is a list of tuples (train, test)
-    cv_custom = []
-    cv_custom_y = []
-    for idx, val_set in enumerate(X_tr):
-        tr_sets = []
-        y_tr_sets = []
-        
-        for tr_set in (X_tr[:idx] + X_tr[idx + 1:]):
-            tr_sets += list(tr_set)
-        
-        for y_tr_set in (y_tr[:idx] + y_tr[idx + 1:]):
-            y_tr_sets += list(y_tr_set)
-            
-        cv_custom.append((tr_sets, list(val_set) ))
-        cv_custom_y.append((y_tr_sets, list(y_tr[idx]) ) )
+    cv_custom, cv_custom_y = get_custom_validation_sets(X_tr, y_tr)
     
     # a array of ["C value","training acc","validation acc"] for each validation set
     results = [[]]*len(cv_custom)

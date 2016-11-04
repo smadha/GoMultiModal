@@ -1,6 +1,26 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+def get_custom_validation_sets(X_tr, y_tr):
+    '''
+    cv_custom is a list of tuples (train, test)
+    cv_custom_y is a list of tuples (train_y, test_y)
+    '''
+    cv_custom = []
+    cv_custom_y = []
+    for idx, val_set in enumerate(X_tr):
+        tr_sets = []
+        y_tr_sets = []
+        for tr_set in X_tr[:idx] + X_tr[idx + 1:]:
+            tr_sets += list(tr_set)
+        
+        for y_tr_set in y_tr[:idx] + y_tr[idx + 1:]:
+            y_tr_sets += list(y_tr_set)
+        
+        cv_custom.append((tr_sets, list(val_set)))
+        cv_custom_y.append((y_tr_sets, list(y_tr[idx])))
+    
+    return cv_custom, cv_custom_y
 
 def normalize(X_tr, X_te):
     ''' Normalize training and test data features
