@@ -52,7 +52,7 @@ def report_svm(X_tr, y_tr, X_te, y_te, print_CV_report=False):
             
             y_true, y_pred =training_y, clf.predict(training)
             training_score = accuracy_score(y_true, y_pred)
-            
+                
             # if validation accuracy is higher for this C update results
             if results[idx] == [] or valid_score > results[idx][2]:
                 results[idx] = [C,training_score,valid_score]
