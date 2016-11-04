@@ -29,7 +29,6 @@ def report_svm(X_tr, y_tr, X_te, y_te, print_CV_report=False):
         for y_tr_set in (y_tr[:idx] + y_tr[idx + 1:]):
             y_tr_sets += list(y_tr_set)
             
-        print len(tr_sets), len(val_set), len(y_tr_sets), len(y_tr[idx])
         cv_custom.append((tr_sets, list(val_set) ))
         cv_custom_y.append((y_tr_sets, list(y_tr[idx]) ) )
     

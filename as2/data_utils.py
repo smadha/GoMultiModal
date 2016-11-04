@@ -30,7 +30,7 @@ def getSplitIndex(X,index):
         splitIndex = index-backwardCounter
     return X[0:splitIndex+1],X[splitIndex+1:]
 
-def loaddata(filename, col_selected=None, test_size=0.25, split=4):
+def loaddata(filename, col_selected=None, test_size=0.25, split=4, shuffle=False):
     ''' Load and preprocess dataset
     Args:
         filename: path to data file multimodal.csv
@@ -61,12 +61,14 @@ def loaddata(filename, col_selected=None, test_size=0.25, split=4):
     # Load data into X excluding headers 
     X = np.genfromtxt(filename, delimiter=",",usecols=col_selected, skip_header=1)
     
-    # Shuffle data to avoid any local maxima
-    #np.random.shuffle(X)
     
     # testing data, all folds of training data
     test_split,train_split = getSplitIndex(X, test_size * len(X))
     train_sample_size = len(train_split)
+    
+    if shuffle :
+        # Shuffle training data to avoid any local maxima
+        np.random.shuffle(train_split)
     
     #Normalize data
     #last column is label, fork it out from X into y
