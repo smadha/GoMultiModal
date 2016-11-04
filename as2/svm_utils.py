@@ -1,53 +1,66 @@
-from __future__ import print_function
-
 from sklearn.svm import SVC
-from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import classification_report
+from sklearn.metrics import accuracy_score
 
-from data_utils import loaddata
+from data_utils import loaddata, get_custom_validation_sets
 
-C_range = [ 4**i for i in range(-3,8) ]
-gamma_ramge = [ 4**i for i in range(-7,0) ]
-deg_range =  range(1,4)
+C_range = [ 10 ** i for i in range(-3, 3) ]
 
-# Number of folds in Cross validation
-CV_FOLDS = 5
+print (C_range)
+
 # Number of parallel jobs
-parallel = 2
+parallel = 1
 
 
-def report_svm(X_tr,y_tr,X_te,y_te, print_CV_report = False):
-    svr = SVC()
+def report_svm(X_tr, y_tr, X_te, y_te, print_CV_report=False):
+    print "Running linear SVM"
+    cv_custom, cv_custom_y = get_custom_validation_sets(X_tr, y_tr)
     
-    parameters = [{ 'kernel':['poly'], 'C':C_range, 'degree':deg_range },
-                  { 'kernel':['rbf'], 'C':C_range, 'gamma':gamma_ramge}]
+    # a array of ["C value","training acc","validation acc"] for each validation set
+    results = [[]]*len(cv_custom)
     
-    clf = GridSearchCV(svr, parameters, cv=CV_FOLDS, n_jobs = parallel, verbose=True)
+    for C in C_range:
+        clf = SVC(kernel='linear', C=C)
+        for idx, cv_set in enumerate(cv_custom):
+            
+            training = cv_set[0]
+            testing = cv_set[1]
+            
+            training_y = cv_custom_y[idx][0]
+            testing_y = cv_custom_y[idx][1]
+            
+            clf.fit(training,training_y)
+            
+            y_true, y_pred =testing_y, clf.predict(testing)
+            valid_score = accuracy_score(y_true, y_pred)
+            
+            y_true, y_pred =training_y, clf.predict(training)
+            training_score = accuracy_score(y_true, y_pred)
+                
+            # if validation accuracy is higher for this C update results
+            if results[idx] == [] or valid_score > results[idx][2]:
+                results[idx] = [C,training_score,valid_score]
     
-    clf.fit(X_tr,y_tr)
     
-    print("Best parameters set found on development set:")
-    print()
-    print(clf.best_params_)
-    if print_CV_report:
-        print()
-        print("Grid scores on development set:")
-        print()
-        means = clf.cv_results_['mean_test_score']
-        stds = clf.cv_results_['std_test_score']
-        print("mean \tstd \t\tparams")
-        for mean, std, params in zip(means, stds, clf.cv_results_['params']):
-            print("%0.3f (+/-%0.03f) for %r"
-                  % (mean, std * 2, params))
-    
-    print()
-    
-    print("Detailed classification report on test data:")
-    y_true, y_pred = y_te, clf.predict(X_te)
-    print(classification_report(y_true, y_pred))
-    print()
+    print "\t".join(["C value","training acc","validation acc","Testing acc"])
+           
+    for idx, res in enumerate(results):
+        clf = SVC(kernel='linear', C=res[0])
+        
+        training = cv_custom[idx][0]
+        validation = cv_custom[idx][1]
+        
+        training_y = cv_custom_y[idx][0]
+        validation_y = cv_custom_y[idx][1]
+        
+        clf.fit(training + validation, training_y + validation_y)
+        
+        y_true, y_pred = y_te, clf.predict(X_te)
+        test_score = accuracy_score(y_true, y_pred)
+        
+        print "\t".join(map(str, res)) + "\t" + str(test_score)
+        
         
 
 if __name__ == '__main__':
-    X_tr,y_tr,X_te,y_te = loaddata("output-feature-engineering.csv")
-    report_svm(X_tr,y_tr,X_te,y_te, True)
+    X_tr, y_tr, X_te, y_te = loaddata("output-feature-engineering-multimodal.csv")
+    report_svm(X_tr, y_tr, X_te, y_te, True)
