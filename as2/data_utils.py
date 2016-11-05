@@ -50,7 +50,7 @@ def getSplitIndex(X,index):
         splitIndex = index-backwardCounter
     return X[0:splitIndex+1],X[splitIndex+1:]
 
-def loaddata(filename, col_selected=None, test_size=0.25, split=4, shuffle=False):
+def loaddata(filename, test_slice = 0, split=3, shuffle=False, col_selected=None, test_size=0.25  ):
     ''' Load and preprocess dataset
     Args:
         filename: path to data file multimodal.csv
@@ -73,17 +73,24 @@ def loaddata(filename, col_selected=None, test_size=0.25, split=4, shuffle=False
     # By default exclude "id column" and put all other columns
     if col_selected == None:
         col_selected = range(0, len(header_list))
-    else:
-        col_selected = set(col_selected)
-        col_selected.add(len(header_list)-1)
-        col_selected.add(0)
-        
+    #else:
+        #col_selected.add(0)
+        #col_selected.add(len(header_list)-1)
+        #col_selected = set(col_selected)
+
     # Load data into X excluding headers 
     X = np.genfromtxt(filename, delimiter=",",usecols=col_selected, skip_header=1)
     
     
     # testing data, all folds of training data
-    test_split,train_split = getSplitIndex(X, test_size * len(X))
+    test_start_index = test_slice*(test_size * len(X))
+    train_split = X[0:test_start_index]
+    X = X[test_start_index:]
+    test_split,train_split_next = getSplitIndex(X, test_size * len(X))
+    if(len(train_split)>0):
+        train_split = np.concatenate((train_split, train_split_next), axis=0)
+    else:
+        train_split = train_split_next
     train_sample_size = len(train_split)
     
     if shuffle :
@@ -96,8 +103,8 @@ def loaddata(filename, col_selected=None, test_size=0.25, split=4, shuffle=False
     y_te = test_split[:,len(X[0])-1]
     X_te = test_split[:,1:len(X[0])-1]
     
-    print "Total length of loaded data", len(X[0])
-    print "Length Test features -",  len(X_te[0])
+    #print "Total length of loaded data", len(X[0])
+    #print "Length Test features -",  len(X_te[0])
     
     #last column is label, fork it out from X into y
     # id is column 0
@@ -105,7 +112,7 @@ def loaddata(filename, col_selected=None, test_size=0.25, split=4, shuffle=False
     y_tr = train_split[:,len(X[0])-1]
     X_tr = train_split[:,1:len(X[0])-1]
     
-    print "Length Training features -",  len(X_tr[0])
+    #print "Length Training features -",  len(X_tr[0])
     
     # Normalize training and test features 
     X_tr,X_te = normalize(X_tr, X_te)
@@ -119,7 +126,7 @@ def loaddata(filename, col_selected=None, test_size=0.25, split=4, shuffle=False
     z[:,0]=id_tr
     train_split = np.append(z,train_split, axis=1)
     
-    print "Length cols in train_split -",  len(train_split[0])
+    #print "Length cols in train_split -",  len(train_split[0])
     
     # all training splits
     train_samples = []
@@ -127,7 +134,7 @@ def loaddata(filename, col_selected=None, test_size=0.25, split=4, shuffle=False
     i = 1
     while(i<split):
         train_subsplit,train_split = getSplitIndex(train_split, split_size)
-        print len(train_subsplit),len(train_split)
+        #print len(train_subsplit),len(train_split)
         train_samples.append(train_subsplit)
         i=i+1
     train_samples.append(train_split)
@@ -140,9 +147,9 @@ def loaddata(filename, col_selected=None, test_size=0.25, split=4, shuffle=False
         X_tr.append(X_fold)
         y_tr.append(y_fold)
         
-        print "Features in X_fold", len(X_fold[0]), len(y_fold), len(X_fold)
+    #    print "Features in X_fold", len(X_fold[0]), len(y_fold), len(X_fold)
         
-    print len(X_tr), len(y_tr), len(X_te), len(y_te)
+    #print len(X_tr), len(y_tr), len(X_te), len(y_te)
     return X_tr,y_tr,X_te,y_te    
 
 
