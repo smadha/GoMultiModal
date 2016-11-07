@@ -1,0 +1,237 @@
+-----------------------------------10 batch -----------------------------------------
+<REPORT>
+Training accuracy 0.863309352518
+Validation accuracy 0.5
+Testing accuracy 0.30985915493
+Confusion matrix [[ 3 11 13]
+ [ 6 13  5]
+ [ 7  7  6]]
+[ 1.  1.  2.  2.  1.  1.  1.  0.  1.  2.  1.  2.  2.  0.  1.  2.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  1.  2.  2.  1.  1.  1.  2.  1.  0.  0.
+  0.  2.  0.  0.  1.  1.  0.  0.  2.  2.  2.  2.  2.  0.  1.  0.  1.  1.
+  1.  2.  1.  2.  2.  2.  1.  0.  0.  0.  1.  2.  1.  0.  0.  0.  1.]
+[0 0 0 0 0 0 0 2 1 0 2 2 0 0 0 0 2 2 2 2 2 1 1 1 1 1 1 1 1 2 1 1 0 1 2 0 1
+ 0 1 1 2 1 1 1 1 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 2 2 2 2 2 1 1 0 2 1]
+Detailed classification report on test data:
+             precision    recall  f1-score   support
+
+        0.0       0.19      0.11      0.14        27
+        1.0       0.42      0.54      0.47        24
+        2.0       0.25      0.30      0.27        20
+
+avg / total       0.28      0.31      0.29        71
+
+</REPORT>
+
+(139L, 9L)
+(139L, 3L)
+(70L, 9L) (70L, 3L)
+Epoch 00016: early stopping
+Saved model to disk
+
+<REPORT>
+Training accuracy 0.834532374101
+Validation accuracy 0.528571428571
+Testing accuracy 0.352112676056
+Confusion matrix [[ 7  8  6]
+ [ 9 12  3]
+ [14  6  6]]
+[ 1.  0.  2.  1.  2.  0.  2.  1.  1.  1.  1.  1.  1.  0.  1.  1.  2.  2.
+  1.  1.  2.  2.  0.  2.  0.  1.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.
+  0.  2.  0.  2.  2.  2.  2.  2.  2.  2.  2.  2.  0.  2.  1.  2.  1.  1.
+  2.  0.  2.  1.  0.  2.  2.  2.  0.  1.  0.  1.  2.  1.  1.  1.  1.]
+[1 1 2 0 0 2 1 1 2 1 1 1 1 2 2 0 0 0 0 1 0 2 0 0 0 0 0 0 1 1 1 1 2 2 1 0 2
+ 2 0 0 0 0 0 0 1 1 2 1 1 1 1 0 0 0 0 0 0 2 2 2 2 0 1 0 1 0 1 1 0 1 1]
+Detailed classification report on test data:
+             precision    recall  f1-score   support
+
+        0.0       0.23      0.33      0.27        21
+        1.0       0.46      0.50      0.48        24
+        2.0       0.40      0.23      0.29        26
+
+avg / total       0.37      0.35      0.35        71
+
+</REPORT>
+
+(139L, 9L)
+(139L, 3L)
+(70L, 9L) (70L, 3L)
+Epoch 00019: early stopping
+Saved model to disk
+
+<REPORT>
+Training accuracy 0.68345323741
+Validation accuracy 0.357142857143
+Testing accuracy 0.30985915493
+Confusion matrix [[11 17  8]
+ [ 3  7  4]
+ [ 1 16  4]]
+[ 1.  1.  1.  2.  1.  2.  1.  2.  2.  2.  2.  2.  1.  1.  2.  2.  0.  0.
+  2.  1.  2.  1.  2.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  1.
+  0.  2.  0.  2.  0.  0.  0.  1.  2.  2.  2.  2.  2.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  1.  2.  1.  0.  0.  2.  0.  0.  0.]
+[1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 0 2 0 0 0 0 0 0 0 1 1 1 0
+ 1 1 0 1 1 0 0 1 1 1 1 1 1 1 2 1 1 2 1 1 2 2 0 1 1 0 1 2 1 1 1 1 1 0]
+Detailed classification report on test data:
+             precision    recall  f1-score   support
+
+        0.0       0.73      0.31      0.43        36
+        1.0       0.17      0.50      0.26        14
+        2.0       0.25      0.19      0.22        21
+
+avg / total       0.48      0.31      0.33        71
+
+</REPORT>
+
+(140L, 9L)
+(140L, 3L)
+(71L, 9L) (71L, 3L)
+Epoch 00021: early stopping
+Saved model to disk
+
+<REPORT>
+Training accuracy 0.707142857143
+Validation accuracy 0.394366197183
+Testing accuracy 0.246376811594
+Confusion matrix [[ 4  2 15]
+ [ 4  6 17]
+ [10  4  7]]
+[ 0.  0.  1.  0.  0.  0.  0.  0.  0.  1.  0.  1.  0.  0.  1.  2.  1.  1.
+  2.  2.  2.  2.  2.  2.  2.  1.  1.  2.  1.  2.  1.  1.  0.  1.  2.  1.
+  1.  1.  1.  2.  2.  0.  2.  2.  1.  1.  1.  0.  2.  0.  0.  0.  0.  2.
+  1.  1.  1.  2.  1.  2.  2.  1.  0.  0.  1.  0.  1.  2.  1.]
+[2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 0 2 2 0 2 1 2 2 1 0 2 2 0 2 0 1 2 2 1 0 1 1
+ 1 0 0 1 2 2 1 2 2 1 1 2 2 0 0 2 2 0 2 2 2 2 0 0 0 1 0 2 0 0 0 2]
+Detailed classification report on test data:
+             precision    recall  f1-score   support
+
+        0.0       0.22      0.19      0.21        21
+        1.0       0.50      0.22      0.31        27
+        2.0       0.18      0.33      0.23        21
+
+avg / total       0.32      0.25      0.25        69
+
+</REPORT>
+
+
+
+----------------------------------------5 batch -------------------------------------
+(139L, 9L)
+(139L, 3L)
+(70L, 9L) (70L, 3L)
+Epoch 00008: early stopping
+Saved model to disk
+
+<REPORT>
+Training accuracy 0.776978417266
+Validation accuracy 0.485714285714
+Testing accuracy 0.394366197183
+Confusion matrix [[ 6  6 15]
+ [ 5 13  6]
+ [ 6  5  9]]
+[ 1.  1.  2.  2.  1.  1.  1.  0.  1.  2.  1.  2.  2.  0.  1.  2.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  1.  2.  2.  1.  1.  1.  2.  1.  0.  0.
+  0.  2.  0.  0.  1.  1.  0.  0.  2.  2.  2.  2.  2.  0.  1.  0.  1.  1.
+  1.  2.  1.  2.  2.  2.  1.  0.  0.  0.  1.  2.  1.  0.  0.  0.  1.]
+[1 1 1 0 1 0 0 2 1 0 2 2 0 0 0 0 2 2 2 0 0 0 2 2 2 2 0 2 2 1 2 2 2 1 2 0 1
+ 0 1 2 2 1 1 1 1 2 2 2 2 2 2 2 1 1 1 1 2 2 1 1 1 2 0 1 0 0 1 2 1 2 1]
+Detailed classification report on test data:
+             precision    recall  f1-score   support
+
+        0.0       0.35      0.22      0.27        27
+        1.0       0.54      0.54      0.54        24
+        2.0       0.30      0.45      0.36        20
+
+avg / total       0.40      0.39      0.39        71
+
+</REPORT>
+
+(139L, 9L)
+(139L, 3L)
+(70L, 9L) (70L, 3L)
+Epoch 00010: early stopping
+Saved model to disk
+
+<REPORT>
+Training accuracy 0.726618705036
+Validation accuracy 0.442857142857
+Testing accuracy 0.352112676056
+Confusion matrix [[10  5  6]
+ [ 9  8  7]
+ [12  7  7]]
+[ 1.  0.  2.  1.  2.  0.  2.  1.  1.  1.  1.  1.  1.  0.  1.  1.  2.  2.
+  1.  1.  2.  2.  0.  2.  0.  1.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.
+  0.  2.  0.  2.  2.  2.  2.  2.  2.  2.  2.  2.  0.  2.  1.  2.  1.  1.
+  2.  0.  2.  1.  0.  2.  2.  2.  0.  1.  0.  1.  2.  1.  1.  1.  1.]
+[1 0 2 0 0 2 1 2 2 1 1 1 2 2 2 0 0 0 0 0 0 1 0 0 0 0 0 0 2 0 1 2 2 1 1 0 2
+ 1 0 0 0 0 0 0 1 2 2 2 1 2 2 1 1 1 1 1 1 2 2 2 2 0 0 0 0 0 0 0 0 1 1]
+Detailed classification report on test data:
+             precision    recall  f1-score   support
+
+        0.0       0.32      0.48      0.38        21
+        1.0       0.40      0.33      0.36        24
+        2.0       0.35      0.27      0.30        26
+
+avg / total       0.36      0.35      0.35        71
+
+</REPORT>
+
+(139L, 9L)
+(139L, 3L)
+(70L, 9L) (70L, 3L)
+Epoch 00012: early stopping
+Saved model to disk
+
+<REPORT>
+Training accuracy 0.705035971223
+Validation accuracy 0.414285714286
+Testing accuracy 0.492957746479
+Confusion matrix [[21  3 12]
+ [ 3  6  5]
+ [ 7  6  8]]
+[ 1.  1.  1.  2.  1.  2.  1.  2.  2.  2.  2.  2.  1.  1.  2.  2.  0.  0.
+  2.  1.  2.  1.  2.  0.  0.  0.  0.  0.  1.  0.  0.  0.  0.  0.  0.  1.
+  0.  2.  0.  2.  0.  0.  0.  1.  2.  2.  2.  2.  2.  0.  0.  0.  0.  0.
+  0.  0.  0.  0.  0.  0.  0.  0.  1.  2.  1.  0.  0.  2.  0.  0.  0.]
+[1 1 1 1 2 2 2 1 1 2 1 1 1 1 1 0 0 0 0 2 2 2 2 1 0 2 0 0 0 0 0 0 0 2 2 2 0
+ 2 2 2 0 0 0 0 0 0 0 0 2 0 2 0 2 0 2 0 0 2 2 2 1 1 1 2 0 0 2 0 2 0 0]
+Detailed classification report on test data:
+             precision    recall  f1-score   support
+
+        0.0       0.68      0.58      0.63        36
+        1.0       0.40      0.43      0.41        14
+        2.0       0.32      0.38      0.35        21
+
+avg / total       0.52      0.49      0.50        71
+
+</REPORT>
+
+(140L, 9L)
+(140L, 3L)
+(71L, 9L) (71L, 3L)
+Epoch 00018: early stopping
+Saved model to disk
+
+<REPORT>
+Training accuracy 0.65
+Validation accuracy 0.422535211268
+Testing accuracy 0.391304347826
+Confusion matrix [[20  0  1]
+ [20  6  1]
+ [17  3  1]]
+[ 0.  0.  1.  0.  0.  0.  0.  0.  0.  1.  0.  1.  0.  0.  1.  2.  1.  1.
+  2.  2.  2.  2.  2.  2.  2.  1.  1.  2.  1.  2.  1.  1.  0.  1.  2.  1.
+  1.  1.  1.  2.  2.  0.  2.  2.  1.  1.  1.  0.  2.  0.  0.  0.  0.  2.
+  1.  1.  1.  2.  1.  2.  2.  1.  0.  0.  1.  0.  1.  2.  1.]
+[0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 1 1
+ 1 0 0 1 0 0 2 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 2 2 0 0 0]
+Detailed classification report on test data:
+             precision    recall  f1-score   support
+
+        0.0       0.35      0.95      0.51        21
+        1.0       0.67      0.22      0.33        27
+        2.0       0.33      0.05      0.08        21
+
+avg / total       0.47      0.39      0.31        69
+
+</REPORT>

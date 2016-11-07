@@ -41,10 +41,15 @@ def normalize(X_tr, X_te):
 def getSplitIndex(X,index):
     forwardCounter = 0
     backwardCounter = 0
-    while(X[index+forwardCounter,0]==X[index+forwardCounter+1,0] and X[index+1-backwardCounter,0]==X[index-backwardCounter,0]):
+    if(index>len(X)):
+        return X,[]
+    while(index+forwardCounter+1 < len(X) and X[index+forwardCounter,0]==X[index+forwardCounter+1,0] and X[index+1-backwardCounter,0]==X[index-backwardCounter,0]):
         forwardCounter = forwardCounter + 1
         backwardCounter = backwardCounter + 1
-    if(X[index+forwardCounter,0]!=X[index+forwardCounter+1,0]):
+    if(index+forwardCounter+1 >= len(X)):
+        splitIndex = index+forwardCounter
+        return X[0:splitIndex+1],[]
+    elif(X[index+forwardCounter,0]!=X[index+forwardCounter+1,0]):
         splitIndex = index+forwardCounter
     else:
         splitIndex = index-backwardCounter
@@ -84,12 +89,12 @@ def loaddata(filename, test_slice = 0, split=3, shuffle=False, col_selected=None
     
     # testing data, all folds of training data
     test_start_index = test_slice*(test_size * len(X))
-    train_split = X[0:test_start_index]
-    X = X[test_start_index:]
-    test_split,train_split_next = getSplitIndex(X, test_size * len(X))
-    if(len(train_split)>0):
+    X_size = len(X)
+    train_split,X = getSplitIndex(X, test_start_index)
+    test_split,train_split_next = getSplitIndex(X, test_size * X_size)
+    if(len(train_split)>0 and len(train_split_next)>0):
         train_split = np.concatenate((train_split, train_split_next), axis=0)
-    else:
+    elif(len(train_split_next)>0):
         train_split = train_split_next
     train_sample_size = len(train_split)
     

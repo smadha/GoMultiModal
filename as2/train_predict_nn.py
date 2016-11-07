@@ -85,8 +85,8 @@ def run_nn(X_tr, y_tr, X_te, y_te, validation_tuple):
     sgd_lr = 5e-2
     sgd_decay = 5e-05
     arch = [len(X_tr[0]),100,50,len(y_tr[0])]
-    batch_size=500
-    nb_epoch=50
+    batch_size=5
+    nb_epoch=5
     verbose = False
     
     call_ES = EarlyStopping(monitor='val_acc', patience=6, verbose=1, mode='auto')
@@ -119,12 +119,13 @@ def run_nn(X_tr, y_tr, X_te, y_te, validation_tuple):
     
     y_true, y_pred = np.array(y_valid_multiclass) + 1, model.predict_classes(validation_tuple[0], verbose=verbose)
     print "Validation accuracy", accuracy_score(y_true, y_pred)
-    
+
     y_true, y_pred = np.array(y_te) + 1, model.predict_classes(X_te, verbose=verbose)
     print "Testing accuracy", accuracy_score(y_true, y_pred)
     
     print "Confusion matrix", confusion_matrix(y_true, y_pred) 
-    
+    print y_true
+    print y_pred
     print "Detailed classification report on test data:"
     
     print(classification_report(y_true, y_pred))
@@ -133,7 +134,7 @@ def run_nn(X_tr, y_tr, X_te, y_te, validation_tuple):
 
 
 # Run with all features
-X_tr, y_tr, X_te, y_te = loaddata("output-feature-engineering-acoustic.csv")
+X_tr, y_tr, X_te, y_te = loaddata("output-feature-engineering-acoustic.csv",0,3,True)
 
 cv_custom, cv_custom_y = get_custom_validation_sets(X_tr, y_tr)
 
@@ -148,6 +149,54 @@ for idx, cv_set in enumerate(cv_custom):
     
     run_nn(training, training_y, X_te, y_te, (valid, valid_y))
     break
-    
-    
-    
+
+X_tr, y_tr, X_te, y_te = loaddata("output-feature-engineering-acoustic.csv",1,3,True)
+
+cv_custom, cv_custom_y = get_custom_validation_sets(X_tr, y_tr)
+
+
+for idx, cv_set in enumerate(cv_custom):
+
+    training = cv_set[0]
+    valid = cv_set[1]
+
+    training_y = cv_custom_y[idx][0]
+    valid_y = cv_custom_y[idx][1]
+
+    run_nn(training, training_y, X_te, y_te, (valid, valid_y))
+    break
+
+X_tr, y_tr, X_te, y_te = loaddata("output-feature-engineering-acoustic.csv",2,3,True)
+
+cv_custom, cv_custom_y = get_custom_validation_sets(X_tr, y_tr)
+
+
+for idx, cv_set in enumerate(cv_custom):
+
+    training = cv_set[0]
+    valid = cv_set[1]
+
+    training_y = cv_custom_y[idx][0]
+    valid_y = cv_custom_y[idx][1]
+
+    run_nn(training, training_y, X_te, y_te, (valid, valid_y))
+    break
+
+X_tr, y_tr, X_te, y_te = loaddata("output-feature-engineering-acoustic.csv",3,3,True)
+
+cv_custom, cv_custom_y = get_custom_validation_sets(X_tr, y_tr)
+
+
+for idx, cv_set in enumerate(cv_custom):
+
+    training = cv_set[0]
+    valid = cv_set[1]
+
+    training_y = cv_custom_y[idx][0]
+    valid_y = cv_custom_y[idx][1]
+
+    run_nn(training, training_y, X_te, y_te, (valid, valid_y))
+    break
+
+
+
